@@ -1,18 +1,18 @@
 import Api from '@/services/Api'
 export default {
     index(search) {
-        return Api().get('users')
+        return Api().get('books')
     },
-    show(userId) {
-        return Api().get('user/' + userId)
+    show(bookId) {
+        return Api().get('book/' + bookId)
     },
-    post(user) {
-        return Api().post('user', user)
+    post(book) {
+        return Api().post('book', book)
     },
-    put(user) {
-        return Api().put('user/' + user.id, user)
+    put(book) {
+        return Api().put('book/' + book.id, book)
     },
-    delete(user) {
-        return Api().delete('user/' + user.id, user)
+    delete(book) {
+        return Api().delete('book/' + book.id, book)
     },
 }

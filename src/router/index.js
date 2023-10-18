@@ -5,29 +5,36 @@ import UserEdit from '@/components/Users/EditUser'
 import UserShow from '@/components/Users/ShowUser'
 import UserCreate from '@/components/Users/CreateUser'
 
+import Login from '@/components/Login'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/user/create',
-      name: 'user-create',
+      path: '/book',
+      name: 'book-create',
       component: UserCreate
     },
     {
-      path: '/user/edit/:userId',
+      path: '/book/:userId',
       name: 'user-edit',
       component: UserEdit
     },
     {
-      path: '/user/:userId',
+      path: '/book/:userId',
       name: 'user',
       component: UserShow
     },
     {
-      path: '/users',
-      name: 'users',
+      path: '/books',
+      name: 'books',
       component: UserIndex
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
 
     

@@ -1,22 +1,25 @@
 <template>
   <div>
     <h1>Get All Users</h1>
-    <div>จํานวนผู้ใช้งาน {{ users.length }}</div>
-    <div v-for="user in users" v-bind:key="user.id">
-      <div>id: {{ user.id }}</div>
-      <div>ชืEอ-นามสกุล: {{ user.name }} - {{ user.lastname }}</div>
-      <div>email: {{ user.email }}</div>
-      <div>password: {{ user.password }}</div>
+    <div>จํานวนผู้ใช้งาน {{ books.length }}</div>
+    <div v-for="book in books" v-bind:key="book.id">
+      <div>id: {{ book.id }}</div>
+      <div>title: {{ book.title }}</div>
+      <div>author: {{ book.author }}</div>
+      <div>total_page: {{ book.total_page }}</div>
+      <div>publisher: {{ book.publisher }}</div>
+      <div>category: {{ book.category }}</div>
+      <div>price: {{ book.price }}</div>
       <p>
-        <button v-on:click="navigateTo('/user/' + user.id)">
+        <button v-on:click="navigateTo('/book/' + book.id)">
           ดูข้อมูลผู้ใช้
         </button>
-        <button v-on:click="navigateTo('/user/edit/' + user.id)">
+        <button v-on:click="navigateTo('/user/edit/' + book.id)">
           แกไขข้อมูล
         </button>
-        <button v-on:click="deleteUser(user)">ลบข้อมูล</button>
+        <button v-on:click="deleteUser(book)">ลบข้อมูล</button>
       </p>
-      <hr />
+      <hr/>
     </div>
   </div>
 </template>
@@ -25,18 +28,18 @@ import UserServices from "@/services/UserService";
 export default {
   data() {
     return {
-      users: []
+      books: []
     };
   },
   methods: {
     navigateTo(route) {
       this.$router.push(route);
     },
-    async deleteUser(user) {
+    async deleteUser(book) {
       let result = confirm("Want to delete?");
       if (result) {
         try {
-          await UserServices.delete(user);
+          await UserServices.delete(book);
           this.refreshData()
         } catch (err) {
           console.log(err);
@@ -44,11 +47,11 @@ export default {
       }
     },
     async refreshData() {
-      this.users = (await UserServices.index()).data;
+      this.books = (await UserServices.index()).data;
     }
   },
   async created() {
-    this.users = (await UserServices.index()).data;
+    this.books = (await UserServices.index()).data;
   }
 };
 </script>
